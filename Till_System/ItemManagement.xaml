@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="Till_System.ItemManagement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Till_System"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Height="50px" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnAll" Width="100" Click="BtnAll_Click">All</Button>
+                    <Button x:Name="btnFood" Width="100" Click="BtnFood_Click">Food</Button>
+                    <Button x:Name="btnDrinks" Width="100" HorizontalAlignment="Center" Margin="0,0,0,9" VerticalAlignment="Bottom" Click="BtnDrinks_Click">Drinks</Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <ListBox x:Name="listItems" Height="584" Margin="0,0,0,0" SelectionChanged="ListItems_SelectionChanged" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel x:Name="editSection" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="lblItem" Text="Item" TextAlignment="Center" Margin="10,20,-103,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+                <Image x:Name="imgItem" Margin="130,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="250"/>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
+                    <Button x:Name="btnAdd"  Width="80" Click="BtnAdd_Click">Add</Button>
+                    <Button x:Name="btnUpdate" Width="80" Margin="0,10,0,0" Click="BtnUpdate_Click">Update</Button>
+                    <Button x:Name="btnRemove" Width="80" Margin="0,10,0,0" Click="BtnRemove_Click">Remove</Button>
+                    <Button x:Name="btnClear" Width="80" Margin="0,10,0,0" Click="BtnClear_Click">Clear</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35" Margin="0,30,0,0">
+                <TextBlock Width="100" FontSize="20" Margin="30,0,0,0">Name:</TextBlock>
+                <TextBox x:Name="txtName" Width="200" Height="35" FontSize="20" Margin="30,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35" Margin="0,30,0,0" >
+                <TextBlock Width="100" FontSize="20" Margin="30,0,0,0">Price:</TextBlock>
+                <TextBox x:Name="txtPrice" Width="200" Height="35" FontSize="20" Margin="30,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35" Margin="0,30,0,0" >
+                <TextBlock Width="100" FontSize="20" Margin="30,0,0,0">Type:</TextBlock>
+                <ComboBox x:Name="comboType" Width="200" Height="35" Margin="30,0,0,0">
+                    <ComboBoxItem Content="Hot"/>
+                    <ComboBoxItem Content="Cold"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35" Margin="0,30,0,0" >
+                <TextBlock Width="100" FontSize="20" Margin="30,0,0,0">Picture:</TextBlock>
+                <TextBox x:Name="txtPicture" Width="200" Height="35" FontSize="20" Margin="30,0,0,0"/>
+                <Button x:Name="btnFindImage" Margin="10,5,0,5" FontSize="10" Click="BtnFindImage_Click">Find</Button>
+                <Button x:Name="btnAddImage" Margin="10,5,0,5" FontSize="10" Click="BtnAddImage_Click">Add to Finder</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35" Margin="0,30,0,0" >
+                <TextBlock x:Name="lblVarious" Width="100" FontSize="20" Margin="30,0,0,0">Ingredients:</TextBlock>
+                <TextBox x:Name="txtVarious" Width="200"  Height="35" FontSize="20" Margin="30,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35" Margin="0,30,0,0" >
+                <TextBlock x:Name="lblVolume" Width="100" FontSize="20" Margin="30,0,0,0">Volume:</TextBlock>
+                <TextBox x:Name="txtVolume" Width="200" Height="35" FontSize="20" Margin="30,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="Till_System.SalesStatsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Till_System"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Grid HorizontalAlignment="Stretch" Height="319" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Number of Orders :" FontSize="20" Margin="20,0,0,0"/>
+                    <TextBlock Text="Total Items Sold :" FontSize="20" Margin="20,0,0,0"/>
+                    <TextBlock Text="Total Sales :" FontSize="20" Margin="20,0,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock x:Name="txtTotalOrders" FontSize="20" TextAlignment="Left"/>
+                    <TextBlock x:Name="txtTotalItems" FontSize="20" TextAlignment="Left"/>
+                    <TextBlock x:Name="txtTotalSales" FontSize="20" TextAlignment="Left"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                    <TextBlock TextAlignment="Center" Text="Items Summary" FontSize="20" FontWeight="Bold"/>
+                    <ListBox x:Name="listItemsSummary" Height="130" Margin="20,0,20,0" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Best Sellers" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <StackPanel HorizontalAlignment="Left" Height="260" Margin="30,30,30,30">
+                <Grid Margin="90,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image Stretch="Fill" Height="78" Width="79" Source="/Images/gold.png"/>
+                    <Image Grid.Row="1" Stretch="Fill" Height="70" Width="70" Margin="0,20,0,0" Source="/Images/silver.png"/>
+                    <Image Grid.Row="2" Stretch="Fill" Height="70" Width="70" Margin="0,20,0,0" Source="/Images/bronze.png"/>
+                    <TextBlock x:Name="txtFirst" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Text="test"  Width="200" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock x:Name="txtSecond" Grid.Row="1" Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="test"  Width="200" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock x:Name="txtThird" Grid.Row="2" Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="test"  Width="200" FontWeight="Bold" FontSize="18"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" >
+            <TextBlock Text="Orders" TextAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
+            <ListBox x:Name="listBoxOrders" Height="290" Margin="20,0,20,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ListBoxOrders_SelectionChanged"/>
+            <Border CornerRadius="8" BorderBrush="#c49d7c" BorderThickness="3" HorizontalAlignment="Stretch" Margin="10,10,10,20">
+                <RichTextBlock x:Name="txtDisplayOrder" Height="277" Margin="19.667,0,20.333,0" FontSize="15"  FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

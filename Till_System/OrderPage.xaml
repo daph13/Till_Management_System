@@ -1,0 +1,133 @@
+﻿<Page
+    x:Class="Till_System.OrderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Till_System"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#c2b6ab">
+            <TextBlock Text="Order : " FontSize="30" Margin="20,20,0,0" FontWeight="Bold"/>
+            <TextBlock x:Name="txtOrderNumber" TextAlignment="Center" Text="" FontSize="30" Width="100" Margin="20,20,0,0" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Height="71" Grid.ColumnSpan="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c2b6ab" >
+            <Border CornerRadius="8" BorderBrush="#ede6dc" BorderThickness="3" HorizontalAlignment="Center" Margin="0,0,5,0">
+                <Button x:Name="btnFood" Width="150" VerticalAlignment="Stretch"  Margin="0,0,0,0" Click="BtnFood_Click">Food</Button>
+            </Border>
+            <Border CornerRadius="8" BorderBrush="#ede6dc" BorderThickness="3" HorizontalAlignment="Center" Margin="0,0,5,0">
+                <Button x:Name="btnDrinks" Width="150" VerticalAlignment="Stretch" Click="BtnDrinks_Click">Drinks</Button>
+            </Border>
+            <Border CornerRadius="8" BorderBrush="#ede6dc" BorderThickness="3" HorizontalAlignment="Center" Margin="0,0,5,0">
+                <Button x:Name="btnDiscount" Width="125" VerticalAlignment="Stretch" Click="BtnDiscount_Click">Discounts</Button>
+            </Border>
+            <Border CornerRadius="8" BorderBrush="#ede6dc" BorderThickness="3" HorizontalAlignment="Center" Margin="0,0,5,0">
+                    <Button x:Name="btnClearOrder" Width="150" VerticalAlignment="Stretch"  Margin="0,0,0,0" Click="BtnClearOrder_Click">Clear Order</Button>
+            </Border>
+            <Border CornerRadius="8" BorderBrush="#ede6dc" BorderThickness="3" HorizontalAlignment="Center" Margin="0,0,5,0">
+                <Button x:Name="btnDelete" Width="105" VerticalAlignment="Stretch"  Click="BtnDelete_Click" HorizontalAlignment="Left">Delete Item</Button>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="
+#c49d7c" Grid.ColumnSpan="2" Margin="0,0.333,0,0">
+            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,20,20,20" Height="525" Background="#e3cba9">
+                <GridView x:Name="gridItems" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" ItemsSource="{Binding}" IsItemClickEnabled="True" ItemClick="GridItems_ItemClick">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Item">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{x:Bind Picture }" Width="150" Height="150"/>
+                                <TextBlock TextAlignment="Center" x:Name="item" Text="{x:Bind Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <GridView x:Name="gridDrinkItems" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" ItemsSource="{Binding}" IsItemClickEnabled="True" ItemClick="GridDrinkItems_ItemClick">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Item">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{x:Bind Picture }" Width="150" Height="150"/>
+                                <TextBlock TextAlignment="Center" x:Name="item" Text="{x:Bind Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <StackPanel x:Name="discountPanel">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnStaff" Width="200" Height="50" Click="BtnStaff_Click">Staff Discount 25%</Button>
+                        <Button x:Name="btnStudent" Width="200" Height="50" Margin="20,0,0,0" Click="BtnStudent_Click">Student Discount 10%</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                        <Button x:Name="btnManagement" Width="200" Height="50" Click="BtnManagement_Click">Management Discount 50%</Button>
+                        <Button x:Name="btnSenior" Width="200" Height="50" Margin="20,0,0,0" Click="BtnSenior_Click">Senior's Discount 10%</Button>
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0">
+                        <Button x:Name="btnRemoveDisc" Width="150" Height="50" HorizontalAlignment="Right" Margin="20,0,20,0" Click="BtnRemoveDisc_Click">Remove Discount</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="0,0.333,0,0">
+            <ListBox x:Name="listBoxOrder" Height="256" Margin="7,0,0,0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Grid Height="78" Margin="0,0,0.333,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Total :" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" />
+                <TextBlock Grid.Row="1" Text="Discount :" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" />
+                <TextBlock Grid.Row="2" Text="Total After Discount :" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" />
+                <TextBlock Grid.Row="3" Text="Amount :" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" />
+
+                <TextBlock Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" x:Name="txtTotal"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" x:Name="txtDiscount" />
+                <TextBlock Grid.Row="2" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" x:Name="txtAfterDiscount" FontWeight="Bold"  />
+                <TextBlock Grid.Row="3" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" FontSize="17" x:Name="txtAmountPaid" />
+
+            </Grid>
+            <Grid Height="240" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn7" Height="60" Margin="0,0,0,0" Click="Btn7_Click">7</Button>
+                <Button Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn8" Click="Btn8_Click">8</Button>
+                <Button Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn9" Click="Btn9_Click">9</Button>
+                <Button Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black"  FontSize="20" x:Name="btnEnter" Click="BtnEnter_Click">Enter</Button>
+                <Button Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn4" Click="Btn4_Click">4</Button>
+                <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn5" Click="Btn5_Click">5</Button>
+                <Button Grid.Row="1"  Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn6" Click="Btn6_Click">6</Button>
+                <Button Grid.Row="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn1" Click="Btn1_Click">1</Button>
+                <Button Grid.Row="2"  Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn2" Click="Btn2_Click">2</Button>
+                <Button Grid.Row="2"  Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn3" Click="Btn3_Click">3</Button>
+                <Button Grid.Row="3"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn0" Click="Btn0_Click">0</Button>
+                <Button Grid.Row="3"  Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btn00" Click="Btn00_Click">00</Button>
+                <Button Grid.Row="3"  Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btnDot" Click="BtnDot_Click">.</Button>
+                <Button Grid.Row="2"  Grid.Column="3"  Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" FontSize="20" x:Name="btnClear" Click="BtnClear_Click">Clear</Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
